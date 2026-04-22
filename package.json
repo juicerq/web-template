@@ -1,0 +1,34 @@
+{
+	"name": "@juicerq/template",
+	"private": true,
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"type": "module",
+	"scripts": {
+		"dev": "bun --filter 'apps/api' --filter 'apps/web' dev",
+		"build": "bun --filter 'apps/*' build",
+		"check": "bun --filter '*' typecheck",
+		"lint": "oxlint . --no-error-on-unmatched-pattern",
+		"lint:fix": "oxlint --fix . --no-error-on-unmatched-pattern",
+		"format": "oxfmt .",
+		"format:check": "oxfmt --check .",
+		"test": "bun --filter 'apps/tests' test",
+		"db:up": "docker compose up -d",
+		"db:down": "docker compose down",
+		"db:logs": "docker compose logs -f",
+		"db:generate": "bun --cwd apps/api db:generate",
+		"db:migrate": "bun --cwd apps/api db:migrate",
+		"db:studio": "bun --cwd apps/api db:studio",
+		"db:reset": "bun --cwd apps/api db:reset",
+		"agent-orpc": "bun --cwd apps/api agent-orpc",
+		"prepare": "lefthook install"
+	},
+	"devDependencies": {
+		"@typescript/native-preview": "^7.0.0-dev.20260422.1",
+		"lefthook": "^2.1.6",
+		"oxfmt": "^0.46.0",
+		"oxlint": "^1.61.0"
+	}
+}
