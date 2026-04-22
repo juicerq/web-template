@@ -9,3 +9,4 @@ data/
 .turbo/
 .idea/
 .vscode/settings.json
+apps/web/src/routeTree.gen.ts
