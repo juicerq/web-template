@@ -17,5 +17,6 @@ jobs:
       DATABASE_URL: postgres://postgres:postgres@localhost:5433/template_test
       NODE_ENV: test
     steps:
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - run: bun run test
