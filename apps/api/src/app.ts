@@ -1,4 +1,5 @@
 import { RPCHandler } from "@orpc/server/fetch";
+import { createHonoMiddleware } from "@juicerq/trail/hono";
 import { Hono } from "hono";
 import { db } from "./db/client.ts";
 import { seedCounter } from "./db/seed-counter.ts";
@@ -10,7 +11,13 @@ await seedCounter();
 
 const app = new Hono();
 
-app.use("*", obs.hono);
+app.use(
+	"*",
+	createHonoMiddleware(obs, {
+		slowRequestMs: 3000,
+		maxFieldBytes: 512,
+	}),
+);
 
 const handler = new RPCHandler(appRouter);
 
@@ -25,7 +32,7 @@ app.use("/orpc/*", async (c, next) => {
 	return next();
 });
 
-setInterval(() => obs.cleanup(), 60 * 60 * 1000);
+setInterval(() => void obs.cleanup(), 60 * 60 * 1000);
 
 console.log(`[api] Ouvindo em http://localhost:${env.PORT}`);
 

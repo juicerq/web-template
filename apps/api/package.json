@@ -16,7 +16,7 @@
 		"agent-api": "agent-api"
 	},
 	"dependencies": {
-		"@juicerq/observability": "workspace:*",
+		"@juicerq/trail": "^0.1.2",
 		"@orpc/server": "^1.14.0",
 		"arktype": "^2.2.0",
 		"drizzle-orm": "^0.45.2",

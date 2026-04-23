@@ -1,5 +1,5 @@
 {
-	"name": "@juicerq/template",
+	"name": "@juicerq/web-template",
 	"private": true,
 	"workspaces": [
 		"apps/*",
@@ -24,10 +24,12 @@
 		"db:migrate": "bun --cwd apps/api db:migrate",
 		"db:studio": "bun --cwd apps/api db:studio",
 		"db:reset": "bun --cwd apps/api db:reset",
+		"trail:studio": "sh -c 'trail-studio --db \"${OBSERVABILITY_DB_PATH:-./apps/api/data/observability.db}\" \"$@\"' --",
 		"agent-api": "bun --cwd apps/api agent-api",
 		"prepare": "lefthook install"
 	},
 	"devDependencies": {
+		"@juicerq/trail-studio": "0.1.2",
 		"@typescript/native-preview": "^7.0.0-dev.20260422.1",
 		"bun-types": "^1.3.13",
 		"lefthook": "^2.1.6",

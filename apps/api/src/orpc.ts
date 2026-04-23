@@ -1,17 +1,9 @@
-import { enrich, escalate } from "@juicerq/observability";
+import { createOrpcMiddleware } from "@juicerq/trail/orpc";
 import { os } from "@orpc/server";
 import type { Db, Tx } from "./db/client.ts";
+import { type AppEvent, obs } from "./observability.ts";
 
 export type Context = { user: null; db: Db | Tx };
-
-const EXPECTED_ERROR_CODES = new Set([
-	"UNAUTHORIZED",
-	"FORBIDDEN",
-	"NOT_FOUND",
-	"CONFLICT",
-	"BAD_REQUEST",
-	"RATE_LIMITED",
-]);
 
 const REDACTION_THRESHOLD = 512;
 
@@ -34,15 +26,6 @@ function redactLargeStrings(input: unknown): unknown {
 	return out;
 }
 
-function extractErrorCode(err: unknown) {
-	if (err && typeof err === "object" && "code" in err) {
-		const code = (err as { code: unknown }).code;
-		if (typeof code === "string") return code;
-	}
-
-	return "INTERNAL_SERVER_ERROR";
-}
-
 const base = os.$context<Context>().errors({
 	UNAUTHORIZED: { status: 401, message: "Não autenticado" },
 	FORBIDDEN: { status: 403, message: "Sem permissão" },
@@ -51,38 +34,28 @@ const base = os.$context<Context>().errors({
 	RATE_LIMITED: { status: 429, message: "Muitas requisições" },
 });
 
-const observabilityMiddleware = base.middleware(async ({ path, next }, input) => {
-	const procedure = path.join(".");
+const trailMiddleware = createOrpcMiddleware<AppEvent>(obs, {
+	slowRequestMs: 3000,
+	expectedErrorCodes: [
+		"UNAUTHORIZED",
+		"FORBIDDEN",
+		"NOT_FOUND",
+		"CONFLICT",
+		"BAD_REQUEST",
+		"RATE_LIMITED",
+	],
+});
 
-	enrich({ procedure });
-
+// roda dentro do scope aberto por trailMiddleware — enrich captura input sem boilerplate no handler
+const inputCaptureMiddleware = base.middleware(async ({ next }, input) => {
 	if (input !== undefined) {
 		try {
 			const serialized = JSON.stringify(input);
-			enrich({ input: redactLargeStrings(input), input_size: serialized.length });
+			obs.enrich({ input: redactLargeStrings(input), input_size: serialized.length });
 		} catch {}
 	}
 
-	try {
-		return await next();
-	} catch (err) {
-		const code = extractErrorCode(err);
-		const isError = err instanceof Error;
-		const isExpected = EXPECTED_ERROR_CODES.has(code);
-
-		const errorInfo: Record<string, string> = {
-			type: isError ? err.constructor.name : "Unknown",
-			code,
-			message: isError ? err.message : String(err),
-		};
-
-		if (!isExpected && isError && err.stack) errorInfo.stack = err.stack;
-
-		enrich({ error: errorInfo, error_code: code });
-		escalate(isExpected ? "warn" : "error");
-
-		throw err;
-	}
+	return await next();
 });
 
-export const pub = base.use(observabilityMiddleware);
+export const pub = base.use(trailMiddleware).use(inputCaptureMiddleware);
