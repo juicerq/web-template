@@ -1,4 +1,4 @@
-import { counterRouter } from "./features/counter/router.ts";
+import { counterRouter } from "./router/counter.ts";
 
 export const appRouter = {
 	counter: counterRouter,
