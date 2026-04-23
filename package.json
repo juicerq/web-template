@@ -24,7 +24,7 @@
 		"db:migrate": "bun --cwd apps/api db:migrate",
 		"db:studio": "bun --cwd apps/api db:studio",
 		"db:reset": "bun --cwd apps/api db:reset",
-		"agent-orpc": "bun --cwd apps/api agent-orpc",
+		"agent-api": "bun --cwd apps/api agent-api",
 		"prepare": "lefthook install"
 	},
 	"devDependencies": {

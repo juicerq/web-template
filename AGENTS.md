@@ -18,4 +18,4 @@
 - `bun format` — oxfmt escreve mudanças.
 - `bun test` — integration tests (tx rollback, workspace `@juicerq/tests`).
 - `bun test:e2e` — E2E browser tests (Playwright, workspace `@juicerq/e2e`).
-- `bun agent-orpc <procedure> [--input '<json>']` — invoca procedure oRPC in-process (sem HTTP, sem auth).
+- `bun agent-api <list|show|call> <path> [--input '<json>'] [--as <id>] [--pretty]` — invoca procedures oRPC in-process (sem HTTP, sem auth). Via [@juicerq/agent-api](https://github.com/juicerq/agent-api); config em `apps/api/agent-api.config.ts`.

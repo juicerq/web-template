@@ -24,6 +24,7 @@
         "postgres": "^3.4.9",
       },
       "devDependencies": {
+        "@juicerq/agent-api": "0.1.1",
         "bun-types": "^1.3.13",
         "drizzle-kit": "^0.31.10",
       },
@@ -236,6 +237,8 @@
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.31", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.1.0", "@jridgewell/sourcemap-codec": "^1.4.14" } }, "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw=="],
+
+    "@juicerq/agent-api": ["@juicerq/agent-api@0.1.1", "", { "peerDependencies": { "@orpc/server": "^1.14.0" }, "bin": { "agent-api": "src/cli.ts" } }, "sha512-2/vGktEYCclSbl6Y/hNkwUTbex54liMLEvCokHvUb6QCR06nf8hBcb5t/FCfqinUJXvcbXcaV2FYEBc6swV33w=="],
 
     "@juicerq/api": ["@juicerq/api@workspace:apps/api"],
 
