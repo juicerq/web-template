@@ -1,7 +1,8 @@
 import { enrich, escalate } from "@juicerq/observability";
 import { os } from "@orpc/server";
+import type { Db, Tx } from "./db/client.ts";
 
-export type Context = { user: null };
+export type Context = { user: null; db: Db | Tx };
 
 const EXPECTED_ERROR_CODES = new Set([
 	"UNAUTHORIZED",

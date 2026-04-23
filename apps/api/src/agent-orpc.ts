@@ -1,4 +1,5 @@
 import { createRouterClient } from "@orpc/server";
+import { db } from "./db/client.ts";
 import { appRouter } from "./router.ts";
 
 const args = process.argv.slice(2);
@@ -29,7 +30,7 @@ if (inputIdx !== -1) {
 	}
 }
 
-const client = createRouterClient(appRouter, { context: { user: null } });
+const client = createRouterClient(appRouter, { context: { user: null, db } });
 
 const parts = procedurePath.split(".");
 

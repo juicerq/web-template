@@ -28,6 +28,18 @@
         "drizzle-kit": "^0.31.10",
       },
     },
+    "apps/tests": {
+      "name": "@juicerq/tests",
+      "version": "0.0.0",
+      "dependencies": {
+        "@juicerq/api": "workspace:*",
+        "@orpc/server": "^1.14.0",
+        "drizzle-orm": "^0.45.2",
+      },
+      "devDependencies": {
+        "bun-types": "^1.3.13",
+      },
+    },
     "apps/web": {
       "name": "@juicerq/web",
       "version": "0.0.0",
@@ -212,6 +224,8 @@
     "@juicerq/api": ["@juicerq/api@workspace:apps/api"],
 
     "@juicerq/observability": ["@juicerq/observability@workspace:packages/observability"],
+
+    "@juicerq/tests": ["@juicerq/tests@workspace:apps/tests"],
 
     "@juicerq/web": ["@juicerq/web@workspace:apps/web"],
 
