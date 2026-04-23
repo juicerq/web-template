@@ -1,8 +1,8 @@
-import { defineConfig } from "@juicerq/agent-api";
+import { defineOrpcConfig } from "@juicerq/agent-api/orpc";
 import { db } from "./src/db/client.ts";
 import { appRouter } from "./src/router.ts";
 
-export default defineConfig({
+export default defineOrpcConfig({
 	router: appRouter,
 	context: () => ({ user: null, db }),
 });

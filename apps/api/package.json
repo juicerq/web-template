@@ -24,7 +24,7 @@
 		"postgres": "^3.4.9"
 	},
 	"devDependencies": {
-		"@juicerq/agent-api": "0.1.1",
+		"@juicerq/agent-api": "0.2.0",
 		"bun-types": "^1.3.13",
 		"drizzle-kit": "^0.31.10"
 	}
