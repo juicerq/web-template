@@ -1,7 +1,5 @@
 # AGENTS.md
 
-Regras que todo agente (Claude Code, Cursor, Codex, etc.) deve seguir ao mexer neste repo.
-
 ## Regras
 
 - Mensagens de erro em pt-br (toasts, oRPC errors, logs do observability).
@@ -11,7 +9,7 @@ Regras que todo agente (Claude Code, Cursor, Codex, etc.) deve seguir ao mexer n
 - Early return. Nunca `if/else` aninhado quando `return` resolve.
 - Nunca anotar type em return de função — inferência total.
 - Nunca `as X as Y`, nunca `@ts-ignore`, nunca `any` sem motivo documentado.
-- Procurar utils existentes antes de escrever novo. Reuso > duplicação.
+- Procurar utils existentes antes de escrever novo. Siga DRY.
 
 ## Comandos
 

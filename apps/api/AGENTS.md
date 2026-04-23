@@ -1,7 +1,5 @@
 # AGENTS.md — apps/api
 
-Regras específicas para mexer em `apps/api`. Herdam tudo de `../../AGENTS.md`.
-
 ## Regras
 
 - Errors em procedures SEMPRE via `errors.XXX({ message })` do oRPC. Nunca `throw new Error()` genérico.
