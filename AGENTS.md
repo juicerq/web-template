@@ -18,4 +18,6 @@ Regras que todo agente (Claude Code, Cursor, Codex, etc.) deve seguir ao mexer n
 - `bun check` — typecheck de todos os workspaces (tsgo).
 - `bun lint` — oxlint no repo inteiro.
 - `bun format` — oxfmt escreve mudanças.
+- `bun test` — integration tests (tx rollback, workspace `@juicerq/tests`).
+- `bun test:e2e` — E2E browser tests (Playwright, workspace `@juicerq/e2e`).
 - `bun agent-orpc <procedure> [--input '<json>']` — invoca procedure oRPC in-process (sem HTTP, sem auth).
