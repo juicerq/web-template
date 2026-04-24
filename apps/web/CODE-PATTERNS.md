@@ -71,6 +71,16 @@ export function UserRow({ user, onDelete }: Props) {
 
 `queryClient.invalidateQueries({ queryKey: orpc.x.key() })` para namespace inteiro, `orpc.x.y.queryKey({ input })` para key específica.
 
+### Subscriptions SSE
+
+Subscription padrão usa Event Iterator do oRPC sobre HTTP, não WebSocket.
+
+`experimental_liveOptions({ retry: true })` é o padrão quando a tela precisa do estado atual. O cache guarda só o último evento.
+
+`experimental_streamedOptions({ queryFnOptions: { refetchMode: "reset", maxChunks: N }, retry: true })` só quando o array de eventos é o dado de negócio, como logs, chat ou timeline.
+
+Nome do endpoint expressa o recurso: `counter.live`, `jobs.progress`, `notifications.live`. Evitar `subscribe`.
+
 ### Tipos
 
 Tipos derivados via `RouterOutputs` / `RouterInputs` de `@/lib/orpc`. Nunca redeclarar shapes que já existem no backend.

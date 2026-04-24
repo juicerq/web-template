@@ -3,7 +3,7 @@ import { expect, test } from "../playwright/fixtures.ts";
 test("incrementa counter e UI reflete o novo valor", async ({ page }) => {
 	await page.goto("/");
 
-	const value = page.getByText(/^\d+$/);
+	const value = page.getByLabel("Valor atual");
 
 	await expect(value).toHaveText("0");
 

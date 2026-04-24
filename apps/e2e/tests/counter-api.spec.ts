@@ -7,13 +7,13 @@ test("setup via API + verificação via UI", async ({ page, api }) => {
 
 	await page.goto("/");
 
-	await expect(page.getByText(/^\d+$/)).toHaveText("3");
+	await expect(page.getByLabel("Valor atual")).toHaveText("3");
 });
 
 test("ação via UI + verificação via API", async ({ page, api }) => {
 	await page.goto("/");
 	await page.getByRole("button", { name: /incrementar/i }).click();
-	await expect(page.getByText(/^\d+$/)).toHaveText("1");
+	await expect(page.getByLabel("Valor atual")).toHaveText("1");
 
 	const result = await api.counter.get();
 	expect(result.value).toBe(1);

@@ -2,6 +2,7 @@ import { ORPCError } from "@orpc/server";
 import { sql } from "drizzle-orm";
 import type { Db, Tx } from "../../db/client.ts";
 import { counters } from "../../db/schema/counters.ts";
+import { counterRealtime } from "./realtime.ts";
 
 export class CounterManager {
 	constructor(private db: Db | Tx) {}
@@ -25,6 +26,20 @@ export class CounterManager {
 
 		if (!row) throw new ORPCError("NOT_FOUND", { message: "Counter não semeado" });
 
+		counterRealtime.publish({ value: row.value });
+
 		return { value: row.value };
+	}
+
+	live(signal?: AbortSignal) {
+		return counterRealtime.live({
+			signal,
+			getSnapshot: () => this.get(),
+			select: (event) => ({ value: event.value }),
+		});
+	}
+
+	events(signal?: AbortSignal) {
+		return counterRealtime.events(signal);
 	}
 }
