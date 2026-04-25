@@ -1,15 +1,8 @@
 # AGENTS.md
 
-## Regras
+## Regras locais
 
-- Mensagens de erro em pt-br (toasts, oRPC errors, logs do observability).
-- Named exports apenas. Nunca `export default`.
-- Sem comentários. Código deve se explicar. Exceção: WHY não óbvio (invariante sutil, workaround específico).
-- Sem barrel exports (`index.ts` re-exportando módulos). Import direto do arquivo.
-- Early return. Nunca `if/else` aninhado quando `return` resolve.
-- Nunca anotar type em return de função — inferência total.
-- Nunca `as X as Y`, nunca `@ts-ignore`, nunca `any` sem motivo documentado.
-- Procurar utils existentes antes de escrever novo. Siga DRY.
+- Mensagens de erro em pt-br: toasts, oRPC errors e logs do observability.
 
 ## Comandos
 
@@ -18,4 +11,5 @@
 - `bun format` — oxfmt escreve mudanças.
 - `bun test` — integration tests (tx rollback, workspace `@juicerq/tests`).
 - `bun test:e2e` — E2E browser tests (Playwright, workspace `@juicerq/e2e`).
+- `bun check:lobomfz` — runner extra com tsgo, oxlint custom, knip, jscpd e checks `@lobomfz/check`.
 - `bun agent-api <list|show|call> <path> [--input '<json>'] [--as <id>] [--pretty]` — invoca procedures oRPC in-process (sem HTTP, sem auth). Via [@juicerq/agent-api](https://github.com/juicerq/agent-api); config em `apps/api/agent-api.config.ts`.

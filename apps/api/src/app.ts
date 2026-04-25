@@ -1,36 +1,12 @@
-import { RPCHandler } from "@orpc/server/fetch";
-import { createHonoMiddleware } from "@juicerq/trail/hono";
-import { Hono } from "hono";
 import { db } from "./db/client.ts";
 import { seedCounter } from "./db/seed-counter.ts";
 import { env } from "./env.ts";
+import { createApiApp } from "./http.ts";
 import { obs } from "./observability.ts";
-import { appRouter } from "./router.ts";
 
 await seedCounter();
 
-const app = new Hono();
-
-app.use(
-	"*",
-	createHonoMiddleware(obs, {
-		slowRequestMs: 3000,
-		maxFieldBytes: 512,
-	}),
-);
-
-const handler = new RPCHandler(appRouter);
-
-app.use("/orpc/*", async (c, next) => {
-	const { matched, response } = await handler.handle(c.req.raw, {
-		prefix: "/orpc",
-		context: { user: null, db },
-	});
-
-	if (matched) return c.newResponse(response.body, response);
-
-	return next();
-});
+const app = createApiApp({ db });
 
 setInterval(() => void obs.cleanup(), 60 * 60 * 1000);
 

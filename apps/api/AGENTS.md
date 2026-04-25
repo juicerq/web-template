@@ -1,10 +1,10 @@
 # AGENTS.md — apps/api
 
-Apenas quando for implementar, ler o `CODE-PATTERNS.md` da área:
+Apenas quando for implementar, ler o `AGENTS.md` da área:
 
-- Router (delegators): [`src/router/CODE-PATTERNS.md`](./src/router/CODE-PATTERNS.md)
-- Features (lógica/managers): [`src/features/CODE-PATTERNS.md`](./src/features/CODE-PATTERNS.md)
-- Banco de dados: [`src/db/CODE-PATTERNS.md`](./src/db/CODE-PATTERNS.md)
+- Router (delegators): [`src/router/AGENTS.md`](./src/router/AGENTS.md)
+- Features (lógica/managers): [`src/features/AGENTS.md`](./src/features/AGENTS.md)
+- Banco de dados: [`src/db/AGENTS.md`](./src/db/AGENTS.md)
 
 ## Observability
 

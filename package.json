@@ -10,6 +10,7 @@
 		"dev": "bun --filter './apps/api' --filter './apps/web' dev",
 		"build": "bun --filter 'apps/*' build",
 		"check": "bun --filter '*' typecheck",
+		"check:lobomfz": "lobomfz-check",
 		"lint": "oxlint . --no-error-on-unmatched-pattern",
 		"lint:fix": "oxlint --fix . --no-error-on-unmatched-pattern",
 		"format": "oxfmt .",
@@ -30,6 +31,7 @@
 	},
 	"devDependencies": {
 		"@juicerq/trail-studio": "0.1.2",
+		"@lobomfz/check": "^0.1.2",
 		"@typescript/native-preview": "^7.0.0-dev.20260422.1",
 		"bun-types": "^1.3.13",
 		"lefthook": "^2.1.6",
