@@ -6,6 +6,7 @@
       "name": "@juicerq/template",
       "devDependencies": {
         "@juicerq/trail-studio": "0.1.2",
+        "@lobomfz/check": "^0.1.2",
         "@typescript/native-preview": "^7.0.0-dev.20260422.1",
         "bun-types": "^1.3.13",
         "lefthook": "^2.1.6",
@@ -17,7 +18,7 @@
       "name": "@juicerq/api",
       "version": "0.0.0",
       "dependencies": {
-        "@juicerq/trail": "^0.1.2",
+        "@juicerq/trail": "^0.1.3",
         "@orpc/server": "^1.14.0",
         "arktype": "^2.2.0",
         "drizzle-orm": "^0.45.2",
@@ -246,11 +247,13 @@
 
     "@juicerq/tests": ["@juicerq/tests@workspace:apps/tests"],
 
-    "@juicerq/trail": ["@juicerq/trail@0.1.2", "", { "peerDependencies": { "@orpc/server": "^1.10.0", "@trpc/server": "^11.0.0", "hono": "^4.12.0" }, "optionalPeers": ["@orpc/server", "@trpc/server", "hono"] }, "sha512-OHH9dR7uenC7muF6x9Az+UTMN9yu0D0DF0BpkOmtp1FdZw4IduGLn3M62OWNx7uKtaT0nKwlBBys8G1BW7AZ0g=="],
+    "@juicerq/trail": ["@juicerq/trail@0.1.3", "", { "peerDependencies": { "@orpc/server": "^1.10.0", "@trpc/server": "^11.0.0", "hono": "^4.12.0" }, "optionalPeers": ["@orpc/server", "@trpc/server", "hono"] }, "sha512-VNeQAJnVv2urK/pr6VQ/nPJ0xpn2wx1Kz2zwWRElbOifW6UWON9Zbhm2ejxcABtQHopJFZaeDKw52Zd1Z8D/0g=="],
 
     "@juicerq/trail-studio": ["@juicerq/trail-studio@0.1.2", "", { "dependencies": { "@hono/zod-validator": "^0.7.6", "@tanstack/react-query": "^5.90.10", "@tanstack/react-router": "^1.135.0", "@vitejs/plugin-react": "^5.1.1", "hono": "^4.12.14", "react": "^19.2.0", "react-dom": "^19.2.0", "vite": "^7.2.4", "zod": "^4.1.13" }, "bin": { "trail-studio": "src/cli.ts" } }, "sha512-cyVjggtXiwMaQG1R6ud7PlBZ8KhWBN6ExsExSzDcC+WcZPFhgDGhJP3ol9MrEdNvEzoLqQYqUTuUvO4Q4TEptQ=="],
 
     "@juicerq/web": ["@juicerq/web@workspace:apps/web"],
+
+    "@lobomfz/check": ["@lobomfz/check@0.1.25", "", { "bin": { "lobomfz-check": "dist/bin/check.js" } }, "sha512-So/2LJUiw25CVco7Rrk14lXEUtcLjZZcFMdqu68EJJJSQJcwJzQzcVpkcbq+BzHEFxqVDACwMLdaB9ZttB/1Cw=="],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.4", "", { "dependencies": { "@tybys/wasm-util": "^0.10.1" }, "peerDependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1" } }, "sha512-3NQNNgA1YSlJb/kMH1ildASP9HW7/7kYnRI2szWJaofaS1hWmbGI4H+d3+22aGzXXN9IJ+n+GiFVcGipJP18ow=="],
 
